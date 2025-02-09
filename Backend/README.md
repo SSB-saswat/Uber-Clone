@@ -59,3 +59,58 @@ This endpoint registers a new user. It validates the incoming data and creates a
 ## Notes
 - Ensure that the request Content-Type is set to `application/json`.
 - The endpoint validates the incoming data and performs password hashing before creating the user.
+
+# User Login Endpoint
+
+## Endpoint
+**POST /users/login**
+
+## Description
+This endpoint authenticates a user. It validates the provided credentials and returns an authentication token along with user information upon successful login.
+
+## Request Data
+- **email** (string): A valid email address.
+- **password** (string): At least 6 characters long.
+
+**Sample Request Body:**
+```json
+{
+  "email": "user@example.com",
+  "password": "yourpassword"
+}
+```
+
+## Response
+
+### Success (200 OK)
+```json
+{
+  "token": "jwt.token.here",
+  "user": {
+    "_id": "userId",
+    "fullName": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "user@example.com",
+    "socketId": ""
+  }
+}
+```
+
+### Error (401 Unauthorized)
+```json
+{
+  "errors": [
+    {
+      "msg": "Invalid credentials",
+      "param": "email",
+      "location": "body"
+    }
+  ]
+}
+```
+
+## Notes
+- Ensure that the request Content-Type is set to `application/json`.
+- The endpoint validates the provided credentials and returns an authentication token upon successful login.
