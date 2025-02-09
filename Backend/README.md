@@ -143,6 +143,6 @@ This endpoint returns the profile details of the authenticated user. It requires
 ### Error (401 Unauthorized)
 ```json
 {
-  "message": "Unauthorized1"
+  "message": "Unauthorized"
 }
 ```
