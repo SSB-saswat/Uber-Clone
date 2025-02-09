@@ -114,3 +114,35 @@ This endpoint authenticates a user. It validates the provided credentials and re
 ## Notes
 - Ensure that the request Content-Type is set to `application/json`.
 - The endpoint validates the provided credentials and returns an authentication token upon successful login.
+
+# User Profile Endpoint
+
+## Endpoint
+**GET /users/profile**
+
+## Description
+This endpoint returns the profile details of the authenticated user. It requires a valid authentication token.
+
+## Response
+
+### Success (200 OK)
+```json
+{
+  "user": {
+    "_id": "userId",
+    "fullName": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "user@example.com",
+    "socketId": ""
+  }
+}
+```
+
+### Error (401 Unauthorized)
+```json
+{
+  "message": "Unauthorized1"
+}
+```
