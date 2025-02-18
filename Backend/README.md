@@ -146,3 +146,27 @@ This endpoint returns the profile details of the authenticated user. It requires
   "message": "Unauthorized"
 }
 ```
+
+# User Logout Endpoint
+
+## Endpoint
+**GET /users/logout**
+
+## Description
+This endpoint logs out the authenticated user by clearing the authentication token and adding it to the blacklist. A valid token is required.
+
+## Response
+
+### Success (200 OK)
+```json
+{
+  "message": "Logged out successfully"
+}
+```
+
+### Error (401 Unauthorized)
+```json
+{
+  "message": "Unauthorized"
+}
+```
