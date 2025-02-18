@@ -170,3 +170,79 @@ This endpoint logs out the authenticated user by clearing the authentication tok
   "message": "Unauthorized"
 }
 ```
+
+# Captain Registration Endpoint
+
+## Endpoint
+**POST /captains/register**
+
+## Description
+This endpoint registers a new captain. It validates the incoming data including vehicle details, hashes the password, and creates a captain record. On successful registration, it returns an authentication token and the captain details.
+
+## Request Data
+- **email** (string): A valid email address.
+- **fullName** (object):
+  - **firstName** (string): At least 3 characters long.
+  - **lastName** (string, optional): At least 3 characters if provided.
+- **password** (string): At least 6 characters long.
+- **vehicle** (object):
+  - **color** (string): At least 3 characters long.
+  - **plate** (string): At least 3 characters long.
+  - **capacity** (number): Must be at least 1.
+  - **vehicleType** (string): Must be one of 'car', 'motorcycle', 'auto'.
+
+**Sample Request Body:**
+```json
+{
+  "email": "captain@example.com",
+  "fullName": {
+    "firstName": "Jane",
+    "lastName": "Doe"
+  },
+  "password": "yourpassword",
+  "vehicle": {
+    "color": "blue",
+    "plate": "ABC123",
+    "capacity": 4,
+    "vehicleType": "car"
+  }
+}
+```
+
+## Response
+
+### Success (201 Created)
+```json
+{
+  "token": "jwt.token.here",
+  "captain": {
+    "_id": "captainId",
+    "fullName": {
+      "firstName": "Jane",
+      "lastName": "Doe"
+    },
+    "email": "captain@example.com",
+    "socketId": "",
+    "status": "inactive",
+    "vehicle": {
+      "color": "blue",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
+
+### Error (400 Bad Request)
+```json
+{
+  "errors": [
+    {
+      "msg": "Validation error message",
+      "param": "fieldName",
+      "location": "body"
+    }
+  ]
+}
+```
